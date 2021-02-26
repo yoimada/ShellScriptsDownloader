@@ -17,9 +17,9 @@ for i in $(cat ../url.txt) ;
 do
         curl -sS --ciphers 'DEFAULT:!DH' -O $(echo $i | tr '\r' ' ') ;
         if [ "$?" = "0" ]; then
-                NOW=`ls -1 | grep -v curls.sh | head -1`
+                NOW=`ls -rt1cd | grep -v curls.sh | tail -1`
                 rec $NOW
-                FILENAME=`ls -1 | grep -v curls.sh | head -1`
+                FILENAME=`ls -rt1cd | grep -v curls.sh | tail -1`
                 mv $FILENAME ./end/
         else
                 exit 1;
