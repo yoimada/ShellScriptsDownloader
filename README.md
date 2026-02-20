@@ -11,3 +11,6 @@
   
 ## if same filename and same MD5 ?
   [no yet] implemented
+
+## .bashrc_addition.sh
+  for bash function.
