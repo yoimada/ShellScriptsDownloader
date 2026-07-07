@@ -5,7 +5,10 @@
  
 ## ./end/
  directory of downloaded files
- 
+
+## ./fail/
+ Failed downloads (HTML responses).
+
 ## if same filename ?
   add prefix( _ ) to filename
   
