@@ -19,6 +19,34 @@ mkdir -p ./fail;
 TOTAL=$(wc -l < ../url.txt)
 COUNT=0
 
+# 色
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # no color
+
+# 最終結果を出力する関数
+finish() {
+		FAILCOUNT=$(ls ./fail | wc -l)
+
+		echo ""
+		echo "=============================="
+		echo "        Download Result"
+		echo "=============================="
+
+		if [ "$FAILCOUNT" -gt 0 ]; then
+				echo -e "${RED}NG: $FAILCOUNT file(s) failed.${NC}"
+				ls ./fail
+		else
+				echo -e "${GREEN}OK: All files downloaded successfully.${NC}"
+		fi
+
+		exit 0
+}
+
+# Ctrl-C を捕捉
+trap finish SIGINT
+
+# main処理
 for i in $(cat ../url.txt) ; do
 	COUNT=$((COUNT + 1))
 
@@ -46,5 +74,5 @@ for i in $(cat ../url.txt) ; do
 	fi
 done
 
-exit 0;
-
+# 正常終了時も finish() を呼ぶ
+finish
